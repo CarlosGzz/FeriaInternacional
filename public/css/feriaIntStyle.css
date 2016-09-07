@@ -1,0 +1,25 @@
+/*Home Page Style CSS*/
+
+body {
+    /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+
+/*Btn Toggle visible*/
+
+@media (min-width: 768px) {
+
+    header {
+    padding-left: 15px;
+    padding-right: 15px;
+    }
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+
+}

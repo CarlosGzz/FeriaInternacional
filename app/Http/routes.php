@@ -18,3 +18,8 @@ Route::get('/', function () {
 Route::get('/x', function () {
     return "helo world";
 });
+
+Route::get('eventos', function()
+{
+    return View::make('pages.eventos');
+});
