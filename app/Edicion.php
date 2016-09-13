@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Edicion extends Model
 {
+    protected $table = "ediciones";
     /**
      * The attributes that are mass assignable.
      *
      * @fillable array
      */
     protected $fillable = [
-        'pais', 'fechaInicio','fechaFinal','logo', 'estatus', 'creador'
+        'pais', 'fechaInicio','fechaFinal','logo', 'estatus', 'administrador_id'
     ];
 
     /**
@@ -21,7 +22,7 @@ class Edicion extends Model
      * @hidden array
      */
     protected $hidden = [
-        'idEdicion'
+        'id'
     ];
     /**
      * Relation to table eventos one to many
@@ -42,6 +43,13 @@ class Edicion extends Model
      */
     public function temas()
     {
-        return $this->belongsToMany('App\Temas');
+        return $this->belongsToMany('App\Tema');
+    }
+    /**
+     * Relation to table temas one to many
+     */
+    public function administrador()
+    {
+        return $this->belongsToMany('App\Administrador');
     }
 }

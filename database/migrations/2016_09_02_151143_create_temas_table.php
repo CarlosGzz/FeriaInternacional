@@ -13,7 +13,7 @@ class CreateTemasTable extends Migration
     public function up()
     {
         Schema::create('temas', function (Blueprint $table) {
-            $table->increments('idTema');
+            $table->increments('id');
             $table->string('nombre',250);
             $table->string('descripcion',250);
             $table->timestamps();
@@ -21,14 +21,22 @@ class CreateTemasTable extends Migration
 
         Schema::create('edicion_tema', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('idEdicion')->unsigned();
-            $table->integer('idTema')->unsigned();
+            $table->integer('edicion_id')->unsigned();
+            $table->integer('tema_id')->unsigned();
             $table->timestamps();
-            $table->unique(array('idEdicion','idTema'));
+            $table->unique(array('edicion_id','tema_id'));
 
             // Foreign keyes
-            $table->foreign('idEdicion')->references('idEdicion')->on('ediciones')->onUpdate('cascade');
-            $table->foreign('idTema')->references('idTema')->on('temas')->onUpdate('cascade');
+            $table->foreign('edicion_id')->references('id')->on('ediciones')->onUpdate('cascade');
+            $table->foreign('tema_id')->references('id')->on('temas')->onUpdate('cascade');
+        });
+        Schema::table('eventos', function(Blueprint $table){
+            // Foreign keyes
+            $table->foreign('tema_id')->references('id')->on('temas')->onUpdate('cascade');
+        });
+        Schema::table('modulos', function(Blueprint $table){
+            // Foreign keyes
+            $table->foreign('tema_id')->references('id')->on('temas')->onUpdate('cascade');
         });
     }
 
@@ -39,6 +47,17 @@ class CreateTemasTable extends Migration
      */
     public function down()
     {
+        
+        Schema::table('edicion_tema', function(Blueprint $table){
+            $table->dropForeign('edicion_tema_edicion_id_foreign');
+            $table->dropForeign('edicion_tema_tema_id_foreign');
+        });
+        Schema::table('eventos', function(Blueprint $table){
+            $table->dropForeign('eventos_tema_id_foreign');
+        });
+        Schema::table('modulos', function(Blueprint $table){
+            $table->dropForeign('modulos_tema_id_foreign');
+        });
         Schema::drop('edicion_tema');
         Schema::drop('temas');
     }

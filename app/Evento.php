@@ -12,7 +12,7 @@ class Evento extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo', 'fechaInicio', 'fechaFinal','lugar','descripcion','tema','tipo', 'encargado', 'estatus', 'registroDeAsistencia', 'audienciaInteresada', 'comentarios', 'creador'
+        'titulo', 'fechaInicio', 'fechaFinal','lugar','descripcion','tema_id','tipo', 'encargado', 'estatus', 'registroDeAsistencia', 'audienciaInteresada', 'comentarios', 'creador_id'
     ];
 
     /**
@@ -21,7 +21,7 @@ class Evento extends Model
      * @var array
      */
     protected $hidden = [
-        'idEvento', 'idEdicion',
+        'id', 'edicion_id',
     ];
 
     /**
@@ -45,6 +45,11 @@ class Evento extends Model
     {
         return $this->belongsToMany('App\Subtema');
     }
-}
-}
+    /**
+     * Relation to table administrador one to many
+     */
+    public function administrador()
+    {
+        return $this->belongsTo('App\Administrador');
+    }
 }

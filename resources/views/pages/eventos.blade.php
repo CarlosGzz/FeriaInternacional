@@ -3,7 +3,17 @@
 @section('pageTitle')
   Eventos
 @stop
-
+<script>    
+  var eventos =[
+  @foreach($eventos as $evento)
+    {
+      title:"{{$evento->titulo}}",
+      start:"{{$evento->fechaInicio}}",
+      end:"{{$evento->fechaInicio}}"
+    },
+  @endforeach
+  ]
+</script>
 @section('content')
   Contenido Eventos
 @stop

@@ -12,7 +12,7 @@ class Modulo extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'creador', 'titulo','tema_id','tipo'
     ];
 
     /**
@@ -21,7 +21,7 @@ class Modulo extends Model
      * @var array
      */
     protected $hidden = [
-        'idModulo', 'idEdicion',
+        'id', 'edicion_id'
     ];
     /**
      * Relation to table edicion one to many
@@ -43,5 +43,19 @@ class Modulo extends Model
     public function subtemas()
     {
         return $this->belongsToMany('App\Subtema');
+    }
+    /**
+     * Relation to table administrador one to many
+     */
+    public function administrador()
+    {
+        return $this->belongsTo('App\Administrador');
+    }
+    /**
+     * Relation to table contenidos one to many
+     */
+    public function contenidos()
+    {
+        return $this->hasMany('App\Contenido');
     }
 }

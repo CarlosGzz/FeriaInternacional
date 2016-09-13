@@ -13,12 +13,15 @@ class CreateModulosTable extends Migration
     public function up()
     {
         Schema::create('modulos', function (Blueprint $table) {
-            $table->increments('idModulo');
-            $table->integer('idEdicion')->unsigned();
-            $table->integer('creador')->unsigned();
+            $table->increments('id');
+            $table->integer('edicion_id')->unsigned();
+            $table->string('titulo',200);
+            $table->integer('administrador_id')->unsigned();
+            $table->integer('tema_id')->unsigned();
+            $table->string('tipo',120);
             $table->timestamps();
             // Foreign keyes
-            $table->foreign('idEdicion')->references('idEdicion')->on('ediciones')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('edicion_id')->references('id')->on('ediciones')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,7 +33,7 @@ class CreateModulosTable extends Migration
     public function down()
     {
         Schema::table('modulos', function(Blueprint $table){
-            $table->dropForeign('modulos_idedicion_foreign');
+            $table->dropForeign('modulos_edicion_id_foreign');
         });
         Schema::drop('modulos');
     }

@@ -13,12 +13,12 @@ class CreateEdicionsTable extends Migration
     public function up()
     {
         Schema::create('ediciones', function (Blueprint $table) {
-            $table->increments('idEdicion');
+            $table->increments('id');
             $table->string('pais', 120);
             $table->date('fechaInicio');
             $table->date('fechaFinal');
             $table->string('logo', 500);
-            $table->integer('creador')->unsigned();
+            $table->integer('administrador_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -12,7 +12,7 @@ class Subtema extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre', 'descripcion', 'idTema'
+        'nombre', 'descripcion', 'tema_id'
     ];
 
     /**
@@ -21,7 +21,7 @@ class Subtema extends Model
      * @var array
      */
     protected $hidden = [
-        'idSubtema'
+        'id'
     ];
     /**
      * Relation to table temas one to many
@@ -36,5 +36,12 @@ class Subtema extends Model
     public function eventos()
     {
         return $this->belongsToMany('App\Evento');
+    }
+    /**
+     * Relation to modulos eventos many to many
+     */
+    public function modulos()
+    {
+        return $this->belongsToMany('App\Modulo');
     }
 }

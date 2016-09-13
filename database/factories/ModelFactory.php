@@ -1,4 +1,12 @@
 <?php
+use App\Administrador;
+use App\Edicion;
+use App\Tema;
+use App\Evento;
+use App\Subtema;
+use App\Modulo;
+use App\Formato;
+use App\Contenido;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,11 +19,99 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+/*$factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+    ];
+});*/
+
+// FACTORY for seeding Administrador
+$factory->define(Administrador::class, function (Faker\Generator $faker) {
+    return [
+        'nombre' => $faker->name,
+        'correo' => $faker->safeEmail,
+        'contrasena' => $faker->password,
+        'tipo' => $faker->randomElement($array = array ('organizador','administrador','editor')),
+        'administrador_id' => rand(1,20),
+        'edicion_id' => $faker->randomDigit,
+    ];
+});
+
+// FACTORY for seeding Edicion
+$factory->define(Edicion::class, function (Faker\Generator $faker) {
+    return [
+        'pais' => $faker->name,
+        'fechaInicio' => $faker->dateTimeThisMonth($max = 'now'),
+        'fechaFinal' => $faker->dateTimeThisMonth($max = 'now'),
+        'logo' => $faker->imageUrl($width = 640, $height = 480),
+        'administrador_id' => rand(1,20),
+    ];
+});
+
+// FACTORY for seeding Evento
+$factory->define(Evento::class, function (Faker\Generator $faker) {
+    return [
+        'edicion_id' => rand(1,10),
+        'titulo' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'fechaInicio' => $faker->dateTimeThisMonth($max = 'now'),
+        'fechaFinal' => $faker->dateTimeThisMonth($max = 'now'),
+        'lugar' => $faker->address,
+        'descripcion' => $faker->text($maxNbChars = 50),
+        'tema_id' => rand(1,10),
+        'tipo' => $faker->text($maxNbChars = 50),
+        'encargado' => $faker->name,
+        'estatus' => rand(1,2),
+        'registroDeAsistencia' => $faker->text($maxNbChars = 50),
+        'audienciaInteresada' => $faker->text($maxNbChars = 50),
+        'comentarios' => $faker->text($maxNbChars = 400),   
+        'administrador_id' => rand(1,20),
+    ];
+});
+
+// FACTORY for seeding Modulo
+$factory->define(Modulo::class, function (Faker\Generator $faker) {
+    return [
+        'edicion_id' => rand(1,10),
+        'titulo' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'administrador_id' => rand(1,20),
+        'tema_id' => rand(1,10),
+        'tipo' => $faker->text($maxNbChars = 400),  
+    ];
+});
+
+// FACTORY for seeding Tema
+$factory->define(Tema::class, function (Faker\Generator $faker) {
+    return [
+        'nombre' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'descripcion' => $faker->text($maxNbChars = 250),
+    ];
+});
+
+// FACTORY for seeding Subtema
+$factory->define(Subtema::class, function (Faker\Generator $faker) {
+    return [
+    	'tema_id' => rand(1,10),
+        'nombre' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'descripcion' => $faker->text($maxNbChars = 250),
+    ];
+});
+
+// FACTORY for seeding Contenido
+$factory->define(Contenido::class, function (Faker\Generator $faker) {
+    return [
+    	'modulo_id' => rand(1,10),
+        'formato_id' => rand(1,10),
+        'contenido' => $faker->imageUrl($width = 640, $height = 480),
+        'secuencia' => $faker->date,
+    ];
+});
+
+// FACTORY for seeding Formato
+$factory->define(Formato::class, function (Faker\Generator $faker) {
+    return [
+        'formato' => $faker->word,
     ];
 });

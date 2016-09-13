@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Administrador extends Model
 {
+
+    protected $table = "administradores";
     /**
      * The attributes that are mass assignable.
      *
      * @fillable array
      */
     protected $fillable = [
-        'nombre', 'correo','fechaFinal','logo', 'creador'
+        'nombre', 'correo', 'tipo', 'creador', 'edicion'
     ];
 
     /**
@@ -29,5 +31,19 @@ class Administrador extends Model
     public function ediciones()
     {
         return $this->hasMany('App\Edicion');
+    }
+    /**
+     * Relation to table edicion one to many
+     */
+    public function eventos()
+    {
+        return $this->hasMany('App\Evento');
+    }
+    /**
+     * Relation to table edicion one to many
+     */
+    public function modulos()
+    {
+        return $this->hasMany('App\Modulo');
     }
 }

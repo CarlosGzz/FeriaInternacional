@@ -23,3 +23,15 @@ Route::get('eventos', function()
 {
     return View::make('pages.eventos');
 });
+
+// SUPER ADMIN ROUTES 
+
+/*Route::group(['prefix' => 'eventos'],function(){
+	Route::get('eventos2',['uses'=> 'EventoController@viewCalendario', 
+		'as' => 'eventos'
+		]);
+});*/
+Route::get('eventos2',['uses'=> 'EventoController@viewCalendario', 
+		'as' => 'eventos'
+		]);
+//Route::resource('admin', 'AdministradorContoller');

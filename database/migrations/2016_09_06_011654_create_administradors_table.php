@@ -13,30 +13,30 @@ class CreateAdministradorsTable extends Migration
     public function up()
     {
         Schema::create('administradores', function (Blueprint $table) {
-            $table->increments('idAdmin');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('correo')->unique();
             $table->string('contrasena');
             $table->enum('tipo', array('administrador', 'organizador', 'editor'));
-            $table->integer('creador')->nullable();
-            $table->integer('edicion')->nullable();
+            $table->integer('administrador_id')->nullable();
+            $table->integer('edicion_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
 
         Schema::table('ediciones', function(Blueprint $table){
             // Foreign keyes
-            $table->foreign('creador')->references('idAdmin')->on('administradores');
+            $table->foreign('administrador_id')->references('id')->on('administradores');
         });
 
         Schema::table('eventos', function(Blueprint $table){
             // Foreign keyes
-            $table->foreign('creador')->references('idAdmin')->on('administradores');
+            $table->foreign('administrador_id')->references('id')->on('administradores');
         });
 
         Schema::table('modulos', function(Blueprint $table){
             // Foreign keyes
-            $table->foreign('creador')->references('idAdmin')->on('administradores');
+            $table->foreign('administrador_id')->references('id')->on('administradores');
         });
     }
 
@@ -48,13 +48,13 @@ class CreateAdministradorsTable extends Migration
     public function down()
     {
         Schema::table('ediciones', function(Blueprint $table){
-            $table->dropForeign('ediciones_creador_foreign');
+            $table->dropForeign('ediciones_administrador_id_foreign');
         });
         Schema::table('eventos', function(Blueprint $table){
-            $table->dropForeign('eventos_creador_foreign');
+            $table->dropForeign('eventos_administrador_id_foreign');
         });
         Schema::table('modulos', function(Blueprint $table){
-            $table->dropForeign('modulos_creador_foreign');
+            $table->dropForeign('modulos_administrador_id_foreign');
         });
         Schema::drop('administradores');
     }

@@ -21,7 +21,7 @@ class Tema extends Model
      * @var array
      */
     protected $hidden = [
-        'idTema'
+        'id'
     ];
     /**
      * Relation to table eventos one to many
