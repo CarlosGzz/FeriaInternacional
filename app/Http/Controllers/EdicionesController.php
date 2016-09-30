@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Administrador;
+use App\Edicion;
 
-class AdministradorController extends Controller
+use App\Http\Requests\EdicionRequest;
+
+
+class EdicionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +20,8 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        //
+        $ediciones = Edicion::orderBy('id', 'ASC')->paginate(5);
+        return view('edicion.index')->with('ediciones', $ediciones);
     }
 
     /**
@@ -27,7 +31,7 @@ class AdministradorController extends Controller
      */
     public function create()
     {
-        //
+        return view('edicion.create');
     }
 
     /**
@@ -36,9 +40,13 @@ class AdministradorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EdicionRequest $request)
     {
-        //
+        
+        $edicion = new Edicion($request->all());
+        $edicion->save();
+        flash('Edicion '.$edicion->pais.' creada exitosamente','success');
+        return redirect()->route('edicion.ediciones.index');
     }
 
     /**
@@ -47,9 +55,13 @@ class AdministradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$edit_delete)
     {
-        //
+        if(empty($edit_delete)){
+            $edit_delete = 0;
+        }
+        $edicion = Edicion::find($id);
+        return view('edicion.show')->with('edicion', $edicion)->with('edit_delete',$edit_delete);
     }
 
     /**
@@ -83,19 +95,9 @@ class AdministradorController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function view($id)
-    {
-    	$admin = Administrador::find($id);
-    	$admin->eventos;
-        dd($admin);
+        $edicion = Edicion::find($id);
+        $edicion->delete();
+        flash('Edicion '.$edicion->pais.' eliminada exitosamente','danger');
+        return redirect()->route('edicion.ediciones.index');
     }
 }

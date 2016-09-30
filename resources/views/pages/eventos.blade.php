@@ -19,8 +19,13 @@
 @stop
 
 @section('vistaCalendario')
-
+    <div class="col-md-6">
       <div id='calendar'></div>
+    </div>
+@stop
+
+@section
+  
 @stop
 
 @section('infoCalendario')

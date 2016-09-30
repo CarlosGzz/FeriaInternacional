@@ -166,6 +166,10 @@ return [
          * Eloquent Sluggable Providers...
          */
         Cviebrock\EloquentSluggable\ServiceProvider::class,
+        /*
+         * Laracast Flash Message Providers...
+         */
+        Laracasts\Flash\FlashServiceProvider::class,
 
     ],
 

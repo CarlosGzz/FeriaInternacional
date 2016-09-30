@@ -8,17 +8,19 @@ use App\Http\Requests;
 
 use App\Evento;
 
-class EventoController extends Controller
-{
+use App\Http\Requests\EventosRequest;
 
+class EventosController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function mostrarTodos()
+    public function index()
     {
-        //
+        $eventos = Evento::orderBy('id', 'ASC')->paginate(5);
+        return view('evento.index')->with('eventos', $eventos);
     }
 
     /**
@@ -26,9 +28,9 @@ class EventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function crear()
+    public function create()
     {
-        //
+        return view('evento.create');
     }
 
     /**
@@ -37,9 +39,12 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function store(Request $request)
     {
-        //
+        $evento = new Evento($request->all());
+        $evento->save();
+        flash('Evento '.$evento->titulo.' creado exitosamente','success');
+        return redirect()->route('evento.eventos.index');
     }
 
     /**
@@ -48,9 +53,13 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function mostrarElemento($id)
+    public function show($id)
     {
-        //
+        if(empty($edit_delete)){
+            $edit_delete = 0;
+        }
+        $evento = Evento::find($id);
+        return view('evento.show')->with('evento', $evento)->with('edit_delete',$edit_delete);
     }
 
     /**
@@ -59,7 +68,7 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editar($id)
+    public function edit($id)
     {
         //
     }
@@ -71,7 +80,7 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -82,20 +91,11 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function eliminar($id)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function viewCalendario()
-    {   
-        $eventos = Evento::all();
-        return view('pages.eventos', compact('eventos'));
+        /*$evento = Evento::find($id);
+        $evento->delete();
+        flash('Evento '.$edicion->pais.' eliminado exitosamente','danger');
+        return redirect()->route('evento.eventos.index');*/
     }
 }

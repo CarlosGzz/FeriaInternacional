@@ -13,7 +13,7 @@ class Edicion extends Model
      * @fillable array
      */
     protected $fillable = [
-        'pais', 'fechaInicio','fechaFinal','logo', 'estatus', 'administrador_id'
+        'pais', 'fechaInicio','fechaFinal','logo', 'administrador_id'
     ];
 
     /**
@@ -50,6 +50,6 @@ class Edicion extends Model
      */
     public function administrador()
     {
-        return $this->belongsToMany('App\Administrador');
+        return $this->belongsTo('App\Administrador');
     }
 }
