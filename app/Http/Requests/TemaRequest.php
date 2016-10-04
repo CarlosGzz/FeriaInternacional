@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class EdicionRequest extends Request
+class TemaRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class EdicionRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,11 +24,7 @@ class EdicionRequest extends Request
     public function rules()
     {
         return [
-            'pais' => 'required|min:3|max:120',
-            'fechaInicio' => 'required|date',
-            'fechaFinal' => 'required|date',
-            'administrador_id' => 'required',
-            'estatus' => 'required'
+            //
         ];
     }
 }

@@ -45,9 +45,9 @@ Route::group(['prefix'=>'edicion'],function(){
 		'uses' => 'EdicionesController@destroy',
 		'as' => 'edicion.ediciones.destroy'
 		]);
-	Route::get('ediciones/{id}/{edit_delete}',[
-		'uses' => 'EdicionesController@show',
-		'as' => 'edicion.ediciones.show'
+	Route::get('json',[
+		'uses' => 'EdicionesController@json',
+		'as' => 'edicion.ediciones.json'
 		]);
 });
 

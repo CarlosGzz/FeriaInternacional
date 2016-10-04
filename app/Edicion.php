@@ -13,7 +13,7 @@ class Edicion extends Model
      * @fillable array
      */
     protected $fillable = [
-        'pais', 'fechaInicio','fechaFinal','logo', 'administrador_id'
+        'pais', 'fechaInicio','fechaFinal','logo','estatus', 'administrador_id'
     ];
 
     /**

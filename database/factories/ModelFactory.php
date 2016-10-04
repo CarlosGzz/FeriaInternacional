@@ -47,6 +47,7 @@ $factory->define(Edicion::class, function (Faker\Generator $faker) {
         'fechaInicio' => $faker->dateTimeThisMonth($max = 'now'),
         'fechaFinal' => $faker->dateTimeThisMonth($max = 'now'),
         'logo' => $faker->imageUrl($width = 640, $height = 480),
+        'estatus' => $faker->randomElement($array = array ('activo','inactivo')),
         'administrador_id' => rand(1,20),
     ];
 });

@@ -11,15 +11,19 @@
 				<th>Pais</th>
 				<th>Fecha Inicio</th>
 				<th>Fecha Fin</th>
+				<th>Logo</th>
+				<th>Estatus</th>
 				<th>Creado Por</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach ($ediciones as $edicion)
 				<tr data-toggle="collapse" data-target="#accordion{{$edicion->id}}" class="clickable">
-					<td><a href="{{route('edicion.ediciones.show',['id' => $edicion->id, 'edit_delete' => 0])}}">{{ $edicion->pais }}</a></td>
+					<td><a href="{{ route('edicion.ediciones.show',['id' => $edicion->id]) }}">{{ $edicion->pais }}</a></td>
 					<td>{{ $edicion->fechaInicio }}</td>
 					<td>{{ $edicion->fechaFinal }}</td>
+					<td>{{ $edicion->logo }}</td>
+					<td>{{ $edicion->estatus }}</td>
 					<td>{{ $edicion->administrador->nombre }}</td>
 				</tr>
 				<tr id="accordion{{$edicion->id}}" class="collapse">

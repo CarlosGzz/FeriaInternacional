@@ -18,6 +18,7 @@ class CreateEdicionsTable extends Migration
             $table->date('fechaInicio');
             $table->date('fechaFinal');
             $table->string('logo', 500);
+            $table->enum('estatus', array('activo', 'inactivo'));
             $table->integer('administrador_id')->unsigned();
             $table->timestamps();
         });

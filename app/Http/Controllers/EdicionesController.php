@@ -14,6 +14,15 @@ use App\Http\Requests\EdicionRequest;
 class EdicionesController extends Controller
 {
     /**
+     * Create a new controller instance and validation of user auth.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -42,7 +51,6 @@ class EdicionesController extends Controller
      */
     public function store(EdicionRequest $request)
     {
-        
         $edicion = new Edicion($request->all());
         $edicion->save();
         flash('Edicion '.$edicion->pais.' creada exitosamente','success');
@@ -55,13 +63,10 @@ class EdicionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,$edit_delete)
+    public function show($id)
     {
-        if(empty($edit_delete)){
-            $edit_delete = 0;
-        }
         $edicion = Edicion::find($id);
-        return view('edicion.show')->with('edicion', $edicion)->with('edit_delete',$edit_delete);
+        return view('edicion.show')->with('edicion', $edicion);
     }
 
     /**
@@ -72,7 +77,8 @@ class EdicionesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edicion = Edicion::find($id);
+        return view('edicion.edit')->with('edicion', $edicion);
     }
 
     /**
@@ -82,9 +88,16 @@ class EdicionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EdicionRequest $request, $id)
     {
-        //
+        $edicion = Edicion::find($id);
+        $edicion->pais = $request->pais;
+        $edicion->fechaInicio = $request->fechaInicio;
+        $edicion->fechaFinal = $request->fechaFinal;
+        $edicion->logo = $request->logo;
+        $edicion->estatus = $request->estatus;
+        $edicion->save();
+        return redirect()->route('edicion.ediciones.show',$edicion->id);
     }
 
     /**
@@ -99,5 +112,16 @@ class EdicionesController extends Controller
         $edicion->delete();
         flash('Edicion '.$edicion->pais.' eliminada exitosamente','danger');
         return redirect()->route('edicion.ediciones.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function json()
+    {
+        $edicion = Edicion::where('estatus','activo')->get(['pais','fechaInicio','fechaFinal']);
+        echo json_encode($edicion); 
     }
 }
