@@ -13,7 +13,7 @@ class Edicion extends Model
      * @fillable array
      */
     protected $fillable = [
-        'pais', 'fechaInicio','fechaFinal','logo','estatus', 'administrador_id'
+        'pais', 'fechaInicio','fechaFinal','logo','estatus', 'user_id'
     ];
 
     /**
@@ -24,6 +24,7 @@ class Edicion extends Model
     protected $hidden = [
         'id'
     ];
+    
     /**
      * Relation to table eventos one to many
      */
@@ -31,6 +32,7 @@ class Edicion extends Model
     {
         return $this->hasMany('App\Evento');
     }
+
     /**
      * Relation to table modulos one to many
      */
@@ -38,6 +40,7 @@ class Edicion extends Model
     {
         return $this->hasMany('App\Modulo');
     }
+
     /**
      * Relation to table temas many to many
      */
@@ -45,11 +48,12 @@ class Edicion extends Model
     {
         return $this->belongsToMany('App\Tema');
     }
+
     /**
      * Relation to table temas one to many
      */
     public function administrador()
     {
-        return $this->belongsTo('App\Administrador');
+        return $this->belongsTo('App\User');
     }
 }

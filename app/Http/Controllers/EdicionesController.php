@@ -105,15 +105,4 @@ class EdicionesController extends Controller
         flash('Edicion '.$edicion->pais.' eliminada exitosamente','danger');
         return redirect()->route('edicion.ediciones.index');
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function json()
-    {
-        $edicion = Edicion::where('estatus','activo')->get(['pais','fechaInicio','fechaFinal']);
-        echo json_encode($edicion); 
-    }
 }

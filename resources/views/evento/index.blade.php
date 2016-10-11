@@ -36,7 +36,7 @@
 					<td>{{ $evento->encargado }}</td>
 					<td>{{ $evento->estatus }}</td>
 					<td>{{ $evento->asistencia }}</td>
-					<td>{{ $evento->administrador->nombre }}</td>
+					<td>{{ $evento->user->name }}</td>
 				</tr>
 				<tr id="accordion{{$evento->id}}" class="collapse">
 					<td colspan="4">

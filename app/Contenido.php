@@ -15,6 +15,7 @@ class Contenido extends Model
     protected $fillable = [
         'modulo_id','formato','contenido','secuencia'
     ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -23,6 +24,7 @@ class Contenido extends Model
     protected $hidden = [
         'id'
     ];
+
     /**
      * Relation to table eventos one to many
      */
@@ -30,6 +32,7 @@ class Contenido extends Model
     {
         return $this->belongsTo('App\Modulo');
     }
+    
     /**
      * Relation to table modulos one to many
      */

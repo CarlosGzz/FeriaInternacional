@@ -16,12 +16,17 @@ class CreateModulosTable extends Migration
             $table->increments('id');
             $table->integer('edicion_id')->unsigned();
             $table->string('titulo',200);
-            $table->integer('administrador_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('tema_id')->unsigned();
             $table->string('tipo',120);
             $table->timestamps();
             // Foreign keyes
             $table->foreign('edicion_id')->references('id')->on('ediciones')->onDelete('cascade')->onUpdate('cascade');
+        });
+
+        Schema::table('modulos', function(Blueprint $table){
+            // Foreign keyes
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -35,6 +40,11 @@ class CreateModulosTable extends Migration
         Schema::table('modulos', function(Blueprint $table){
             $table->dropForeign('modulos_edicion_id_foreign');
         });
+
+        Schema::table('modulos', function(Blueprint $table){
+            $table->dropForeign('modulos_user_id_foreign');
+        });
+
         Schema::drop('modulos');
     }
 }

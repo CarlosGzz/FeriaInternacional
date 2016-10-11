@@ -12,7 +12,7 @@ class Evento extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo', 'fechaInicio', 'fechaFinal','lugar','descripcion','tema_id','tipo', 'encargado', 'estatus', 'registroDeAsistencia', 'audienciaInteresada', 'comentarios', 'creador_id'
+        'titulo', 'fechaInicio', 'fechaFinal','lugar','descripcion','tema_id','tipo', 'encargado', 'estatus', 'registroDeAsistencia', 'audienciaInteresada', 'comentarios', 'user_id'
     ];
 
     /**
@@ -31,6 +31,7 @@ class Evento extends Model
     {
         return $this->belongsTo('App\Edicion');
     }
+
     /**
      * Relation to table temas one to many
      */
@@ -38,6 +39,7 @@ class Evento extends Model
     {
         return $this->belongsTo('App\Tema');
     }
+
     /**
      * Relation to table subtemas many to many
      */
@@ -45,11 +47,20 @@ class Evento extends Model
     {
         return $this->belongsToMany('App\Subtema');
     }
+
     /**
      * Relation to table administrador one to many
      */
-    public function administrador()
+    public function user()
     {
-        return $this->belongsTo('App\Administrador');
+        return $this->belongsTo('App\User');
+    }
+    
+    /**
+     * Relation to table subtemas many to many
+     */
+    public function usuarios()
+    {
+        return $this->belongsToMany('App\Usuario');
     }
 }

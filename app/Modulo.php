@@ -23,6 +23,7 @@ class Modulo extends Model
     protected $hidden = [
         'id', 'edicion_id'
     ];
+
     /**
      * Relation to table edicion one to many
      */
@@ -30,6 +31,7 @@ class Modulo extends Model
     {
         return $this->belongsTo('App\Edicion');
     }
+
     /**
      * Relation to table temas one to many
      */
@@ -37,6 +39,7 @@ class Modulo extends Model
     {
         return $this->belongsTo('App\Tema');
     }
+
     /**
      * Relation to table subtemas many to many
      */
@@ -44,6 +47,15 @@ class Modulo extends Model
     {
         return $this->belongsToMany('App\Subtema');
     }
+
+    /**
+     * Relation to table contenidos one to many
+     */
+    public function contenidos()
+    {
+        return $this->hasMany('App\Contenido');
+    }
+
     /**
      * Relation to table administrador one to many
      */
@@ -51,11 +63,12 @@ class Modulo extends Model
     {
         return $this->belongsTo('App\Administrador');
     }
+    
     /**
-     * Relation to table contenidos one to many
+     * Relation to table subtemas many to many
      */
-    public function contenidos()
+    public function usuarios()
     {
-        return $this->hasMany('App\Contenido');
+        return $this->belongsToMany('App\Usuario');
     }
 }

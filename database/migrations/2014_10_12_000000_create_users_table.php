@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('estatus', array('administrador', 'organizador', 'editor'));
+            $table->enum('tipo', array('administrador', 'organizador', 'editor'));
+            $table->integer('edicion_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -9,6 +9,16 @@ use App\Http\Requests;
 class ContenidoController extends Controller
 {
     /**
+     * Create a new controller instance and validation of user auth.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

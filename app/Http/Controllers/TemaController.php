@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Tema;
+
+use App\Http\Requests\TemaRequest;
+
 class TemaController extends Controller
 {
     /**
@@ -15,7 +19,7 @@ class TemaController extends Controller
      */
     public function index()
     {
-        //
+        $temas = Tema::all();
     }
 
     /**

@@ -15,7 +15,7 @@ class SubtemaController extends Controller
      */
     public function index()
     {
-        //
+        $subtema = Edicion::all();
     }
 
     /**

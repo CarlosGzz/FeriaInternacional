@@ -37,7 +37,7 @@ Route::get('eventos', function()
 //Route::resource('admin', 'AdministradorContoller');
 
 /*
-* Routes for Edicion...
+* Routes para Edicion...
 */
 Route::group(['prefix'=>'edicion'],function(){
 	Route::resource('ediciones','EdicionesController');
@@ -51,6 +51,9 @@ Route::group(['prefix'=>'edicion'],function(){
 		]);
 });
 
+/*
+* Routes para Evento...
+*/
 Route::group(['prefix'=>'evento'],function(){
 	Route::resource('eventos','EventosController');
 	Route::get('eventos/{id}/destroy',[
@@ -63,6 +66,38 @@ Route::group(['prefix'=>'evento'],function(){
 		]);
 });
 
+/*
+* Routes para Modulo...
+*/
+Route::group(['prefix'=>'modulo'],function(){
+	Route::resource('modulos','ModuloController');
+	Route::get('modulos/{id}/destroy',[
+		'uses' => 'ModuloController@destroy',
+		'as' => 'modulo.modulos.destroy'
+		]);
+	Route::get('modulos/{id}/{edit_delete}',[
+		'uses' => 'ModuloController@show',
+		'as' => 'modulo.modulos.show'
+		]);
+});
+
+/*
+* Routes para App...
+*/
+Route::group(['prefix'=>'app'],function(){
+	Route::get('edicion',[
+		'uses' => 'AplicacionController@edicion',
+		'as' => 'eventos'
+		]);
+	Route::get('eventos',[
+		'uses' => 'AplicacionController@eventos',
+		'as' => 'eventos'
+		]);
+});
+
+/*
+* Routes para Login...
+*/
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

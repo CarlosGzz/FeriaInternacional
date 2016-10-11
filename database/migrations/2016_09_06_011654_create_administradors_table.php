@@ -23,21 +23,6 @@ class CreateAdministradorsTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
-        Schema::table('ediciones', function(Blueprint $table){
-            // Foreign keyes
-            $table->foreign('administrador_id')->references('id')->on('administradores');
-        });
-
-        Schema::table('eventos', function(Blueprint $table){
-            // Foreign keyes
-            $table->foreign('administrador_id')->references('id')->on('administradores');
-        });
-
-        Schema::table('modulos', function(Blueprint $table){
-            // Foreign keyes
-            $table->foreign('administrador_id')->references('id')->on('administradores');
-        });
     }
 
     /**
@@ -47,15 +32,7 @@ class CreateAdministradorsTable extends Migration
      */
     public function down()
     {
-        Schema::table('ediciones', function(Blueprint $table){
-            $table->dropForeign('ediciones_administrador_id_foreign');
-        });
-        Schema::table('eventos', function(Blueprint $table){
-            $table->dropForeign('eventos_administrador_id_foreign');
-        });
-        Schema::table('modulos', function(Blueprint $table){
-            $table->dropForeign('modulos_administrador_id_foreign');
-        });
+      
         Schema::drop('administradores');
     }
 }

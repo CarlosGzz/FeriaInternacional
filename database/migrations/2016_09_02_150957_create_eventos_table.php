@@ -27,10 +27,15 @@ class CreateEventosTable extends Migration
             $table->string('registroDeAsistencia',100);
             $table->string('audienciaInteresada',100);
             $table->string('comentarios',500);
-            $table->integer('administrador_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
             // Foreign keyes
             $table->foreign('edicion_id')->references('id')->on('ediciones')->onDelete('cascade')->onUpdate('cascade');
+        });
+
+        Schema::table('eventos', function(Blueprint $table){
+            // Foreign keyes
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
     }
@@ -45,6 +50,11 @@ class CreateEventosTable extends Migration
         Schema::table('eventos', function(Blueprint $table){
             $table->dropForeign('eventos_edicion_id_foreign');
         });
+
+        Schema::table('eventos', function(Blueprint $table){
+            $table->dropForeign('eventos_user_id_foreign');
+        });
+
         Schema::drop('eventos');
     }
 }

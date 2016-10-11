@@ -24,7 +24,13 @@ class EventosRequest extends Request
     public function rules()
     {
         return [
-            //
+            'titulo' => 'required|min:3|max:120',
+            'fechaInicio' => 'required|date',
+            'fechaFinal' => 'required|date',
+            'estatus' => 'required'
+            'lugar' => 'required'
+            'estatus' => 'required'
+            'administrador_id' => 'required',
         ];
     }
 }

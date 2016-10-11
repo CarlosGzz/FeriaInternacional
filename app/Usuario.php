@@ -2,17 +2,18 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Usuario extends Model
 {
+	protected $table = "usuarios";
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','tipo','edicion_id',
+        'nombre', 'correo', 'carrera','semestre','puntos',
     ];
 
     /**
@@ -21,27 +22,30 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'contraseña',
     ];
+
     /**
      * Relation to table edicion one to many
      */
-    public function ediciones()
+    public function temas()
     {
-        return $this->hasMany('App\Edicion');
+        return $this->belongsToMany('App\Tema');
     }
+
     /**
      * Relation to table edicion one to many
      */
     public function eventos()
     {
-        return $this->hasMany('App\Evento');
+        return $this->belongsToMany('App\Evento');
     }
+
     /**
      * Relation to table edicion one to many
      */
     public function modulos()
     {
-        return $this->hasMany('App\Modulo');
+        return $this->belongsToMany('App\Modulo');
     }
 }

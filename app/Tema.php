@@ -23,6 +23,7 @@ class Tema extends Model
     protected $hidden = [
         'id'
     ];
+
     /**
      * Relation to table eventos one to many
      */
@@ -30,6 +31,7 @@ class Tema extends Model
     {
         return $this->hasMany('App\Evento');
     }
+
     /**
      * Relation to table modulos one to many
      */
@@ -37,6 +39,7 @@ class Tema extends Model
     {
         return $this->hasMany('App\Modulo');
     }
+
     /**
      * Relation to table subtemas one to many
      */
@@ -44,10 +47,19 @@ class Tema extends Model
     {
         return $this->hasMany('App\Subtema');
     }
+
     /**
      * Relation to table ediciones many to many
      */
     public function ediciones()
+    {
+        return $this->belongsToMany('App\Edicion');
+    }
+    
+    /**
+     * Relation to table ediciones many to many
+     */
+    public function usuarios()
     {
         return $this->belongsToMany('App\Edicion');
     }

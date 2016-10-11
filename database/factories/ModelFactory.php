@@ -1,4 +1,5 @@
 <?php
+use App\User;
 use App\Administrador;
 use App\Edicion;
 use App\Tema;
@@ -19,14 +20,16 @@ use App\Contenido;
 |
 */
 
-/*$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
+        'tipo' => $faker->randomElement($array = array ('organizador','administrador','editor')),
+        'edicion_id' => rand(1,10),
         'remember_token' => str_random(10),
     ];
-});*/
+});
 
 // FACTORY for seeding Administrador
 $factory->define(Administrador::class, function (Faker\Generator $faker) {
@@ -36,7 +39,7 @@ $factory->define(Administrador::class, function (Faker\Generator $faker) {
         'contrasena' => $faker->password,
         'tipo' => $faker->randomElement($array = array ('organizador','administrador','editor')),
         'administrador_id' => rand(1,20),
-        'edicion_id' => $faker->randomDigit,
+        'edicion_id' => rand(1,10),
     ];
 });
 
@@ -48,7 +51,7 @@ $factory->define(Edicion::class, function (Faker\Generator $faker) {
         'fechaFinal' => $faker->dateTimeThisMonth($max = 'now'),
         'logo' => $faker->imageUrl($width = 640, $height = 480),
         'estatus' => $faker->randomElement($array = array ('activo','inactivo')),
-        'administrador_id' => rand(1,20),
+        'user_id' => factory(User::class)->create()->id,
     ];
 });
 
@@ -68,7 +71,7 @@ $factory->define(Evento::class, function (Faker\Generator $faker) {
         'registroDeAsistencia' => $faker->text($maxNbChars = 50),
         'audienciaInteresada' => $faker->text($maxNbChars = 50),
         'comentarios' => $faker->text($maxNbChars = 400),   
-        'administrador_id' => rand(1,20),
+        'user_id' => factory(User::class)->create()->id,
     ];
 });
 
@@ -77,7 +80,7 @@ $factory->define(Modulo::class, function (Faker\Generator $faker) {
     return [
         'edicion_id' => rand(1,10),
         'titulo' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'administrador_id' => rand(1,20),
+        'user_id' => factory(User::class)->create()->id,
         'tema_id' => rand(1,10),
         'tipo' => $faker->text($maxNbChars = 400),  
     ];

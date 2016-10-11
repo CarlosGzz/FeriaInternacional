@@ -24,9 +24,7 @@
     </div>
 @stop
 
-@section
-  
-@stop
+
 
 @section('infoCalendario')
   <div class="row">
