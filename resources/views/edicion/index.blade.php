@@ -24,7 +24,7 @@
 					<td>{{ $edicion->fechaFinal }}</td>
 					<td>{{ $edicion->logo }}</td>
 					<td>{{ $edicion->estatus }}</td>
-					<td>{{ $edicion->administrador->nombre }}</td>
+					<td>{{ $edicion->user->name }}</td>
 				</tr>
 				<tr id="accordion{{$edicion->id}}" class="collapse">
 					<td colspan="4">

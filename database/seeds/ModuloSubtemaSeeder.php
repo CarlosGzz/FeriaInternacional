@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Subtema;
+use App\Modulo;
+
 
 class ModuloSubtemaSeeder extends Seeder
 {
@@ -12,8 +15,8 @@ class ModuloSubtemaSeeder extends Seeder
     public function run()
     {
         DB::table('modulo_subtema')->insert([
-            'modulo_id' => rand(1,10),
-            'subtema_id' => rand(1,10),
+            'modulo_id' => factory(Modulo::class)->create()->id,
+            'subtema_id' => factory(Subtema::class)->create()->id,
         ]);
     }
 }

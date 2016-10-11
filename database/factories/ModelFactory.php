@@ -58,13 +58,13 @@ $factory->define(Edicion::class, function (Faker\Generator $faker) {
 // FACTORY for seeding Evento
 $factory->define(Evento::class, function (Faker\Generator $faker) {
     return [
-        'edicion_id' => rand(1,10),
+        'edicion_id' => factory(Edicion::class)->create()->id,
         'titulo' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'fechaInicio' => $faker->dateTimeThisMonth($max = 'now'),
         'fechaFinal' => $faker->dateTimeThisMonth($max = 'now'),
         'lugar' => $faker->address,
         'descripcion' => $faker->text($maxNbChars = 50),
-        'tema_id' => rand(1,10),
+        'tema_id' => factory(Tema::class)->create()->id,
         'tipo' => $faker->text($maxNbChars = 50),
         'encargado' => $faker->name,
         'estatus' => rand(1,2),
@@ -78,10 +78,10 @@ $factory->define(Evento::class, function (Faker\Generator $faker) {
 // FACTORY for seeding Modulo
 $factory->define(Modulo::class, function (Faker\Generator $faker) {
     return [
-        'edicion_id' => rand(1,10),
+        'edicion_id' => factory(Edicion::class)->create()->id,
         'titulo' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'user_id' => factory(User::class)->create()->id,
-        'tema_id' => rand(1,10),
+        'tema_id' => factory(Tema::class)->create()->id,
         'tipo' => $faker->text($maxNbChars = 400),  
     ];
 });
@@ -97,7 +97,7 @@ $factory->define(Tema::class, function (Faker\Generator $faker) {
 // FACTORY for seeding Subtema
 $factory->define(Subtema::class, function (Faker\Generator $faker) {
     return [
-    	'tema_id' => rand(1,10),
+    	'tema_id' => factory(Tema::class)->create()->id,
         'nombre' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'descripcion' => $faker->text($maxNbChars = 250),
     ];
@@ -106,8 +106,8 @@ $factory->define(Subtema::class, function (Faker\Generator $faker) {
 // FACTORY for seeding Contenido
 $factory->define(Contenido::class, function (Faker\Generator $faker) {
     return [
-    	'modulo_id' => rand(1,10),
-        'formato_id' => rand(1,10),
+    	'modulo_id' => factory(Modulo::class)->create()->id,
+        'formato_id' => factory(Formato::class)->create()->id,
         'contenido' => $faker->imageUrl($width = 640, $height = 480),
         'secuencia' => $faker->date,
     ];

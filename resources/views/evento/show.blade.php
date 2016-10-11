@@ -82,7 +82,7 @@
 				<hr>
 			  	<div class="form-group">
 			  		<label>Creado Por</label>
-				 	<p> {{$evento->administrador_id}} </p>
+				 	<p> {{$evento->user->name}} </p>
 			  	</div>
 
 			</div>

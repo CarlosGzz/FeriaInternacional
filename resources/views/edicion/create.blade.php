@@ -44,7 +44,7 @@
 			</div>
 			<!--ID de Admin-->
 			<div class="form-group">
-				{!! Form::hidden('administrador_id','1')!!}
+				{!! Form::hidden('user_id',Auth::user()->id)!!}
 			</div>
 			<hr>
 			<!--Boton-->

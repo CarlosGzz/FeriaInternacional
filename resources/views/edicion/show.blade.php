@@ -44,7 +44,7 @@
 		<!--ID Admin-->
 		<div class="form-group">
 			<label>Creado Por</label>
-			<p> {{$edicion->administrador->nombre}} </p>
+			<p> {{$edicion->user->name}} </p>
 		</div>
 
 	</div>

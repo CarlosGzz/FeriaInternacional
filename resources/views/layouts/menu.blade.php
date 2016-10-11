@@ -42,6 +42,22 @@
                             </a>
                         </li>
                     @endif
+                    @if (Auth::user()->tipo == "organizador")
+                        <li>
+                            <a href="{{ url('/evento/eventos') }}">Eventos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/home') }}">Redes Sociales
+                            </a>
+                        </li>
+                    @endif
+                    @if (Auth::user()->tipo == "editor")
+                        <li>
+                            <a href="{{ url('/home') }}">Contenido Cultural
+                            </a>
+                        </li>
+                    @endif
                 @endif
             </ul>
 
@@ -56,12 +72,6 @@
                         <a href="{{ url('/register') }}">Registrar</a>
                     </li>
                 @else
-                <!-- Authentication Links for type of admin -->
-                @if (Auth::user()->tipo == "administrador")
-                    <li>
-                        <a href="">SUP</a>
-                    </li>
-                @endif
                 <!-- /Authentication Links for type of admin -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -69,8 +79,14 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
+                            <a href="{{ url('/edicion/ediciones') }}">
+                                <i class="glyphicon glyphicon-wrench"></i>Edicion
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
                             <a href="{{ url('/logout') }}">
-                                <i class="fa fa-btn fa-sign-out"></i>Cerrar Sesión
+                                <i class="glyphicon glyphicon-log-out"></i>Cerrar Sesión
                             </a>
                         </li>
                     </ul>

@@ -13,7 +13,7 @@ class Edicion extends Model
      * @fillable array
      */
     protected $fillable = [
-        'pais', 'fechaInicio','fechaFinal','logo','estatus', 'user_id'
+        'pais', 'fechaInicio','fechaFinal','logo','estatus',
     ];
 
     /**
@@ -52,7 +52,7 @@ class Edicion extends Model
     /**
      * Relation to table temas one to many
      */
-    public function administrador()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
