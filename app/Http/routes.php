@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/x', function () {
-    return "helo world";
-});
-
 Route::get('eventos', function()
 {
     return View::make('pages.eventos');
@@ -69,15 +65,15 @@ Route::group(['prefix'=>'evento'],function(){
 /*
 * Routes para Modulo...
 */
-Route::group(['prefix'=>'modulo'],function(){
-	Route::resource('modulos','ModuloController');
-	Route::get('modulos/{id}/destroy',[
+Route::group(['prefix'=>'contenido'],function(){
+	Route::resource('contenidos','ModuloController');
+	Route::get('contenido/{id}/destroy',[
 		'uses' => 'ModuloController@destroy',
-		'as' => 'modulo.modulos.destroy'
+		'as' => 'contenido.contenidos.destroy'
 		]);
 	Route::get('modulos/{id}/{edit_delete}',[
 		'uses' => 'ModuloController@show',
-		'as' => 'modulo.modulos.show'
+		'as' => 'contenido.contenidos.show'
 		]);
 });
 

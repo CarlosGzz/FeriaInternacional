@@ -30,7 +30,8 @@ class EventosRequest extends Request
             'estatus' => 'required'
             'lugar' => 'required'
             'estatus' => 'required'
-            'administrador_id' => 'required',
+            'user_id' => 'required',
+            'edicion_id' => 'required',
         ];
     }
 }

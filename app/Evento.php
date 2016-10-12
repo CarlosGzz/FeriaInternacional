@@ -1,9 +1,6 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
-
 class Evento extends Model
 {
     /**
@@ -12,9 +9,8 @@ class Evento extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo', 'fechaInicio', 'fechaFinal','lugar','descripcion','tema_id','tipo', 'encargado', 'estatus', 'registroDeAsistencia', 'audienciaInteresada', 'comentarios', 'user_id'
+        'titulo','edicion_id', 'fechaInicio', 'fechaFinal','lugar','descripcion','tema_id','tipo', 'encargado', 'estatus', 'registroDeAsistencia', 'audienciaInteresada', 'comentarios', 'user_id'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -23,7 +19,6 @@ class Evento extends Model
     protected $hidden = [
         'id', 'edicion_id',
     ];
-
     /**
      * Relation to table edicion one to many
      */
@@ -31,7 +26,6 @@ class Evento extends Model
     {
         return $this->belongsTo('App\Edicion');
     }
-
     /**
      * Relation to table temas one to many
      */
@@ -39,7 +33,6 @@ class Evento extends Model
     {
         return $this->belongsTo('App\Tema');
     }
-
     /**
      * Relation to table subtemas many to many
      */
@@ -47,7 +40,6 @@ class Evento extends Model
     {
         return $this->belongsToMany('App\Subtema');
     }
-
     /**
      * Relation to table administrador one to many
      */

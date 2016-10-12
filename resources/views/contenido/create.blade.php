@@ -81,12 +81,7 @@
 		  	</div>
 		  	<!--ID de ADMIN-->
 		  	<div class="form-group">
-			 	{!! Form::hidden('user_id',Auth::user()->id ) !!}
-		  	</div>
-
-		  	<!--ID de ADMIN-->
-		  	<div class="form-group">
-			 	{!! Form::hidden('edicion_id','1') !!}
+			 	{!! Form::hidden('administrador_id',Auth::user()->id ) !!}
 		  	</div>
 		  	<hr>
 		  	<!--Boton-->

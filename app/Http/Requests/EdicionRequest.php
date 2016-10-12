@@ -27,8 +27,8 @@ class EdicionRequest extends Request
             'pais' => 'required|min:3|max:120',
             'fechaInicio' => 'required|date',
             'fechaFinal' => 'required|date',
-            'administrador_id' => 'required',
-            'estatus' => 'required'
+            'user_id' => 'required',
+            'estatus' => 'required',
         ];
     }
 }

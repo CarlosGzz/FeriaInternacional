@@ -34,11 +34,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/home') }}">Contenido Cultural
+                            <a href="{{ url('/contenido/contenidos') }}">Contenido Cultural
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/home') }}">Redes Sociales
+                            <a href="{{ url('/redes') }}">Redes Sociales
                             </a>
                         </li>
                     @endif
@@ -48,13 +48,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/home') }}">Redes Sociales
+                            <a href="{{ url('/redes') }}">Redes Sociales
                             </a>
                         </li>
                     @endif
                     @if (Auth::user()->tipo == "editor")
                         <li>
-                            <a href="{{ url('/home') }}">Contenido Cultural
+                            <a href="{{ url('/contenido/contenidos') }}">Contenido Cultural
                             </a>
                         </li>
                     @endif
