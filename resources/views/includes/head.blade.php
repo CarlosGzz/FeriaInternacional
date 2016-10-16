@@ -15,9 +15,11 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <!-- Includes -->
-    <link href="css/feriaIntStyle.css" rel="stylesheet">
-    <link href='css/fullcalendar.css' rel='stylesheet'/>
-    <link href='css/fullcalendar.print.css' rel='stylesheet' media='print'/>
+    <link href="{{ URL::asset('css/feriaIntStyle.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/fullcalendar.css') }}" rel="stylesheet"/>
+    <link href="{{ URL::asset('css/fullcalendar.print.css') }}" rel="stylesheet" media="print"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
 
 
     <!-- Extra Styles -->

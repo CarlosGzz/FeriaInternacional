@@ -14,8 +14,8 @@ class EdicionTemaSeeder extends Seeder
     public function run()
     {
         DB::table('edicion_tema')->insert([
-            'edicion_id' => factory(Edicion::class)->create()->id,
-            'tema_id' => factory(Tema::class)->create()->id,
+            'edicion_id' => Edicion::all()->random()->id,
+            'tema_id' => Tema::all()->random()->id,
         ]);
     }
 }

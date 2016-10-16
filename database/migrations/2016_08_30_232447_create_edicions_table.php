@@ -27,6 +27,12 @@ class CreateEdicionsTable extends Migration
             // Foreign keyes
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        Schema::table('users', function(Blueprint $table){
+            // Foreign keyes
+            $table->foreign('edicion_id')->references('id')->on('ediciones');
+        });
+
     }
     /**
      * Reverse the migrations.

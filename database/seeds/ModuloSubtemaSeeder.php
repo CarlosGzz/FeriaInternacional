@@ -15,8 +15,8 @@ class ModuloSubtemaSeeder extends Seeder
     public function run()
     {
         DB::table('modulo_subtema')->insert([
-            'modulo_id' => factory(Modulo::class)->create()->id,
-            'subtema_id' => factory(Subtema::class)->create()->id,
+            'modulo_id' => Modulo::all()->random()->id,
+            'subtema_id' => Subtema::all()->random()->id,
         ]);
     }
 }

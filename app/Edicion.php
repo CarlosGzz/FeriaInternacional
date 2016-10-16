@@ -56,4 +56,11 @@ class Edicion extends Model
     {
         return $this->belongsTo('App\User');
     }
+    /**
+     * Relation to table temas one to many
+     */
+    public function users()
+    {
+        return $this->hasMany('App\User');
+    }
 }

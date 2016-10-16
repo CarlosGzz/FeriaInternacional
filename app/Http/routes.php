@@ -20,18 +20,6 @@ Route::get('eventos', function()
     return View::make('pages.eventos');
 });
 
-// SUPER ADMIN ROUTES 
-
-/*Route::group(['prefix' => 'eventos'],function(){
-	Route::get('eventos2',['uses'=> 'EventoController@viewCalendario', 
-		'as' => 'eventos'
-		]);
-});*/
-/*Route::get('eventos2',['uses'=> 'EventoController@viewCalendario', 
-		'as' => 'eventos'
-		]);*/
-//Route::resource('admin', 'AdministradorContoller');
-
 /*
 * Routes para Edicion...
 */
@@ -76,6 +64,26 @@ Route::group(['prefix'=>'contenido'],function(){
 		'as' => 'contenido.contenidos.show'
 		]);
 });
+
+/*
+* Routes para User...
+*/
+Route::group(['prefix'=>'user'],function(){
+	Route::resource('users','UserController');
+	Route::get('users/{id}/destroy',[
+		'uses' => 'UserController@destroy',
+		'as' => 'user.users.destroy'
+		]);
+	Route::get('users/{id}/{edit_delete}',[
+		'uses' => 'UserController@show',
+		'as' => 'user.users.show'
+		]);
+	Route::get('profile',[
+		'uses' => 'UserController@profile',
+		'as' => 'user.profile.profile'
+		]);
+});
+
 
 /*
 * Routes para App...

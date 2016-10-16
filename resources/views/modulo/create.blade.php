@@ -16,7 +16,7 @@
 	@endif
 	<div class="col-lg-4 col-md-4 col-sm-10 col-xs-10 col-lg-offset-1 panel panel-default">
 		<div class = "panel-body">
-			{!! Form::open(['route' => 'evento.eventos.store', 'method' => 'POST']) !!}
+			{!! Form::open(['route' => 'contenido.contenidos.store', 'method' => 'POST']) !!}
 			<!--Titulo-->
 			<div class="form-group">
 			 	{!! Form::label('titulo','Titulo') !!}
@@ -91,5 +91,8 @@
 			{!! Form::close() !!}
 		</div>
 	</div>
+
+
+	</form>
 
 @stop

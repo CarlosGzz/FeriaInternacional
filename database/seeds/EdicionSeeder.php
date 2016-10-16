@@ -13,6 +13,6 @@ class EdicionSeeder extends Seeder
      */
     public function run()
     {
-        factory(Edicion::class, 10)->create();
+        factory(Edicion::class, 5)->create();
     }
 }

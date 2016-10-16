@@ -14,8 +14,8 @@ class EventoSubtemaSeeder extends Seeder
     public function run()
     {
         DB::table('evento_subtema')->insert([
-            'evento_id' => factory(Evento::class)->create()->id,
-            'subtema_id' => factory(Subtema::class)->create()->id,
+            'evento_id' => Evento::all()->random()->id,
+            'subtema_id' => Subtema::all()->random()->id,
         ]);
     }
 }

@@ -8,6 +8,10 @@ use App\Http\Requests;
 
 use App\Evento;
 
+use App\Tema;
+
+use App\Edicion;
+
 use App\Http\Requests\EventosRequest;
 
 class EventosController extends Controller
@@ -28,7 +32,10 @@ class EventosController extends Controller
      */
     public function index()
     {
-        $eventos = Evento::orderBy('id', 'ASC')->paginate(5);
+        //$eventos = Evento::orderBy('id', 'ASC')->paginate(5);
+        $edicion = Edicion::where('estatus','activo')->get();
+        
+        $eventos = Evento::where('edicion_id',$edicion)->orderBy('nombre','ASC')->paginate(5);
         return view('evento.index')->with('eventos', $eventos);
     }
 
@@ -39,7 +46,13 @@ class EventosController extends Controller
      */
     public function create()
     {
-        return view('evento.create');
+        $selectString = "";
+        $optionArray = array();
+        $temas = Tema::all();
+        foreach ($temas as $tema) {
+            $optionArray[$tema->id] = $tema->nombre;
+        }
+        return view('evento.create')->with('optionArray',$optionArray);
     }
 
     /**
@@ -106,5 +119,17 @@ class EventosController extends Controller
         $evento->delete();
         flash('Evento '.$edicion->pais.' eliminado exitosamente','danger');
         return redirect()->route('evento.eventos.index');*/
+    }
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function viewCalendario()
+    {   
+        $eventos = Evento::all();
+        return view('pages.eventos', compact('eventos'));
     }
 }

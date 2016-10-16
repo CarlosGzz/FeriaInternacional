@@ -6,19 +6,20 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Evento;
+use App\User;
 
-class EventoController extends Controller
+class UserController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function mostrarTodos()
+    public function index()
     {
-        //
+        $users = User::orderBy('name', 'ASC')->paginate(10);
+
+        return view('user.index')->with('users', $users);
     }
 
     /**
@@ -26,9 +27,9 @@ class EventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function crear()
+    public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -37,9 +38,12 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function store(Request $request)
     {
-        //
+        $user = new User($request->all());
+        $user->save();
+        flash('User '.$user->pais.' creada exitosamente','success');
+        return redirect()->route('user.users.index');
     }
 
     /**
@@ -48,7 +52,7 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function mostrarElemento($id)
+    public function show($id)
     {
         //
     }
@@ -59,7 +63,7 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editar($id)
+    public function edit($id)
     {
         //
     }
@@ -71,7 +75,7 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -82,20 +86,8 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function eliminar($id)
+    public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function viewCalendario()
-    {   
-        $eventos = Evento::all();
-        return view('pages.eventos', compact('eventos'));
     }
 }

@@ -15,8 +15,8 @@ class ModuloController extends Controller
      */
     public function index()
     {
-        $ediciones = Modulo::orderBy('id', 'ASC')->paginate(10);
-        return view('edicion.index')->with('ediciones', $ediciones);
+        $modulos = Modulo::orderBy('id', 'ASC')->paginate(10);
+        return view('modulo.index')->with('modulos', $modulos);
     }
 
     /**
@@ -26,7 +26,7 @@ class ModuloController extends Controller
      */
     public function create()
     {
-        //
+        return view('modulo.create');
     }
 
     /**

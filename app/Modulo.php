@@ -59,9 +59,9 @@ class Modulo extends Model
     /**
      * Relation to table administrador one to many
      */
-    public function administrador()
+    public function user()
     {
-        return $this->belongsTo('App\Administrador');
+        return $this->belongsTo('App\User');
     }
     
     /**

@@ -43,10 +43,11 @@
 			 	{!! Form::textarea('descripcion','',['class'=>'form-control', 'placeholder' => 'Desrcripcion del evento', 'rows' => 3]) !!}
 		  	</div>
 		  	<!--Tema-->
-		  	<div class="form-group">
+		  	<div class="form-group" id="tema">
 			 	{!! Form::label('tema','Tema') !!}
-			 	<button onclick="changeTemaForm">nuevo tema</button>
-			 	{!! Form::text('tema','',['class'=>'form-control', 'placeholder' => 'Tema del evento', 'required']) !!}
+			 	<button type="button" onclick="temaCambio()" class="btn btn-link">nuevo tema</button>
+			 	{!! Form::select('tema_id', $optionArray , 'S',['class'=>'form-control', 'placeholder' => 'Tema del evento','id'=>'tema_id', 'required']);!!}
+			 	{!! Form::text('tema_id','',['class'=>'form-control', 'placeholder' => 'Tipo de evento', 'required','disabled']) !!}
 		  	</div>
 		  	<!--Tipo-->
 		  	<div class="form-group">
@@ -77,7 +78,7 @@
 		  	<!--Comentarios-->
 		  	<div class="form-group">
 			 	{!! Form::label('comentarios','Comentarios') !!}
-			 	{!! Form::textarea('comentarios','',['class'=>'form-control', 'placeholder' => 'Tipo de evento', 'rows' => 3]) !!}
+			 	{!! Form::textarea('comentarios','',['class'=>'form-control','id'=>'tema_id', 'placeholder' => 'Tipo de evento', 'rows' => 3]) !!}
 		  	</div>
 		  	<!--ID de ADMIN-->
 		  	<div class="form-group">
@@ -86,7 +87,7 @@
 
 		  	<!--ID de ADMIN-->
 		  	<div class="form-group">
-			 	{!! Form::hidden('edicion_id','1') !!}
+			 	{!! Form::hidden('edicion_id','2') !!}
 		  	</div>
 		  	<hr>
 		  	<!--Boton-->

@@ -23,10 +23,6 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Center Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{ url('/home') }}">Home
-                    </a>
-                </li>
                 @if (Auth::user())
                     @if (Auth::user()->tipo == "administrador")
                         <li>
@@ -39,6 +35,10 @@
                         </li>
                         <li>
                             <a href="{{ url('/redes') }}">Redes Sociales
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/user/users') }}">Adminstradores
                             </a>
                         </li>
                     @endif
@@ -79,8 +79,13 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
+                            <a href="{{ url('/user/profile') }}">
+                                <i class="glyphicon glyphicon-user"></i>Perfil
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ url('/edicion/ediciones') }}">
-                                <i class="glyphicon glyphicon-wrench"></i>Edicion
+                                <i class="glyphicon glyphicon-cog"></i>Edicion
                             </a>
                         </li>
                         <li class="divider"></li>

@@ -44,4 +44,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Modulo');
     }
+    /**
+     * Relation to table edicion many to one
+     */
+    public function edicion()
+    {
+        return $this->belongsTo('App\Edicion');
+    }
 }
