@@ -25,6 +25,8 @@
                 @yield('content')
             </div>
         </div>
+        <!-- Footer -->
+        @include('includes.footer')
 
         <!-- JavaScripts -->
         @include('includes.javascripts')

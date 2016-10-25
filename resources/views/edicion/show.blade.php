@@ -34,13 +34,19 @@
 		<!--Fecha Final-->
 		<div class="form-group">
 			<label>Logo</label>
-			<p> {{$edicion->logo}} </p>
+			<img src="{{$edicion->logo}}">
 		</div>
 		<!--Fecha Final-->
 		<div class="form-group">
 			<label>Estatus</label>
 			<p> {{$edicion->estatus}} </p>
 		</div>
+		<!--Fecha Final-->
+		<div class="form-group">
+			<label>Modo</label>
+			<p> {{$edicion->modo}} </p>
+		</div>
+
 		<!--ID Admin-->
 		<div class="form-group">
 			<label>Creado Por</label>

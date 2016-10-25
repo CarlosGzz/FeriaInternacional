@@ -32,10 +32,8 @@ class EventosController extends Controller
      */
     public function index()
     {
-        //$eventos = Evento::orderBy('id', 'ASC')->paginate(5);
-        $edicion = Edicion::where('estatus','activo')->get();
-        
-        $eventos = Evento::where('edicion_id',$edicion)->orderBy('nombre','ASC')->paginate(5);
+        $edicion = Edicion::where('modo','1')->first();
+        $eventos = Evento::where('edicion_id',$edicion->id)->orderBy('titulo','ASC')->paginate(5);
         return view('evento.index')->with('eventos', $eventos);
     }
 

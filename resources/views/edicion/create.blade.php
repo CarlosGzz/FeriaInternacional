@@ -40,7 +40,12 @@
 			<!--Estatus-->
 			<div class="form-group">
 				{!! Form::label('estatus','Estatus') !!}*
-				{!! Form::select('estatus', ['activo' => 'Activo', 'inactivo' => 'Inactivo'], null, ['class'=>'form-control','required','placeholder' => 'Estatus de la edicion..']) !!}
+				{!! Form::select('estatus', ['pasado' => 'pasado', 'planeado' => 'planeado', 'publicado' => 'publicado'], null, ['class'=>'form-control','required','placeholder' => 'Estatus de la edicion..']) !!}
+			</div>
+			<!--Modo-->
+			<div class="form-group">
+				{!! Form::label('modo','Editar') !!} (solo se puede editar una edición)
+				{!! Form::checkbox('modo', '1') !!}
 			</div>
 			<!--ID de Admin-->
 			<div class="form-group">

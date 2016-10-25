@@ -31,5 +31,9 @@
         .fa-btn {
             margin-right: 6px;
         }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
     </style>
 </head>

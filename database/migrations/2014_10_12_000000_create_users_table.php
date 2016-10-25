@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('tipo', array('administrador', 'organizador', 'editor'));
-            $table->integer('edicion_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

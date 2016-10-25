@@ -13,9 +13,6 @@
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
                 Feria Internacional
-                @if (Auth::user())
-                    {{ Auth::user()->edicion}}
-                @endif
             </a>
         </div>
 

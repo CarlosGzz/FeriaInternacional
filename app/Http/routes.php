@@ -20,6 +20,8 @@ Route::get('eventos', function()
     return View::make('pages.eventos');
 });
 
+Route::get('pais','EdicionesController@edicionEditando');
+
 /*
 * Routes para Edicion...
 */
@@ -29,9 +31,9 @@ Route::group(['prefix'=>'edicion'],function(){
 		'uses' => 'EdicionesController@destroy',
 		'as' => 'edicion.ediciones.destroy'
 		]);
-	Route::get('json',[
-		'uses' => 'EdicionesController@json',
-		'as' => 'edicion.ediciones.json'
+	Route::get('editando',[
+		'uses' => 'EdicionesController@edicionEditando',
+		'as' => 'edicion.ediciones.editando'
 		]);
 });
 
@@ -97,6 +99,12 @@ Route::group(['prefix'=>'app'],function(){
 		'uses' => 'AplicacionController@eventos',
 		'as' => 'eventos'
 		]);
+});
+
+/*
+* Routes para Usuarios...
+*/
+Route::group(['prefix'=>'usuario'],function(){
 });
 
 /*

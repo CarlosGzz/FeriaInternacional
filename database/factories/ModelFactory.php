@@ -26,7 +26,6 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
         'tipo' => $faker->randomElement($array = array ('organizador','administrador','editor')),
-        //'edicion_id' => rand(1,10),
         'remember_token' => str_random(10),
     ];
 });
@@ -38,7 +37,8 @@ $factory->define(Edicion::class, function (Faker\Generator $faker) {
         'fechaInicio' => $faker->dateTimeThisMonth($max = 'now'),
         'fechaFinal' => $faker->dateTimeThisMonth($max = 'now'),
         'logo' => $faker->imageUrl($width = 640, $height = 480),
-        'estatus' => 'inactivo',
+        'estatus' => 'planeado',
+        'modo' => false,
         'user_id' => User::all()->random()->id,
     ];
 });

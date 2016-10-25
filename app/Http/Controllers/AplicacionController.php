@@ -23,7 +23,7 @@ class AplicacionController extends Controller
      */
     public function edicion()
     {
-        $edicion = Edicion::where('estatus','activo')->get(['pais','fechaInicio','fechaFinal']);
+        $edicion = Edicion::where('estatus','publicado')->get(['pais','fechaInicio','fechaFinal']);
         echo json_encode($edicion); 
     }
     /**
@@ -33,7 +33,8 @@ class AplicacionController extends Controller
      */
     public function eventos()
     {
-        $eventos = Evento::where('estatus','2')->get(['titulo','fechaInicio','fechaFinal','lugar','descripcion']);
+        $eventos = Edicion::where('estatus','publicado')->eventos();
+        //$eventos = Evento::where('estatus','2')->get(['id','titulo','fechaInicio','fechaFinal','lugar','descripcion']);
         echo json_encode($eventos); 
     }
 }

@@ -30,8 +30,11 @@ class EdicionesController extends Controller
      */
     public function index()
     {
-        $ediciones = Edicion::orderBy('id', 'ASC')->paginate(5);
-        return view('edicion.index')->with('ediciones', $ediciones);
+        $edicionEditando = Edicion::where('modo','1')->first();
+        $edicionPublicada = Edicion::where('estatus','publicado')->first();
+        $edicionesPlaneadas = Edicion::where('estatus','planeado')->orderBy('id', 'ASC')->paginate(5);
+        $edicionesPasadas = Edicion::where('estatus','pasado')->orderBy('id', 'ASC')->paginate(5);
+        return view('edicion.index')->with('edicionesPlaneadas', $edicionesPlaneadas)->with('edicionPublicada',$edicionPublicada)->with('edicionesPasadas',$edicionesPasadas)->with('edicionEditando',$edicionEditando);
     }
 
     /**
@@ -53,6 +56,13 @@ class EdicionesController extends Controller
     public function store(EdicionRequest $request)
     {
         $edicion = new Edicion($request->all());
+        if($edicion->estatus == 'publicado'){
+            $ediciones = Edicion::all();
+            foreach ($ediciones as $ed) {
+                $ed->estatus = "planeado";
+                $ed->save();
+            }
+        }
         $edicion->save();
         flash('Edicion '.$edicion->pais.' creada exitosamente','success');
         return redirect()->route('edicion.ediciones.index');
@@ -96,7 +106,30 @@ class EdicionesController extends Controller
         $edicion->fechaInicio = $request->fechaInicio;
         $edicion->fechaFinal = $request->fechaFinal;
         $edicion->logo = $request->logo;
+        if($edicion->estatus == 'publicado'){
+            $ediciones = Edicion::all();
+            foreach ($ediciones as $ed) {
+                if ($ed->id != $edicion->id) {
+                    if($ed->estatus == 'publicado')
+                        $ed->estatus = "planeado";
+                    $ed->save();
+                }
+            }
+            
+        }
         $edicion->estatus = $request->estatus;
+        if(isset($request->modo)){
+            $ediciones = Edicion::all();
+            foreach ($ediciones as $ed) {
+                if($ed->modo && $ed->id!=$edicion->id){
+                    $ed->modo = "0";
+                    $ed->save();
+                }
+            }
+            $edicion->modo = $request->modo;
+        }else{
+            $edicion->modo = 0;
+        }
         $edicion->save();
         return redirect()->route('edicion.ediciones.show',$edicion->id);
     }
@@ -114,4 +147,17 @@ class EdicionesController extends Controller
         flash('Edicion '.$edicion->pais.' eliminada exitosamente','danger');
         return redirect()->route('edicion.ediciones.index');
     }
+    /**
+     * Check which edition is editing
+     *
+     * 
+     * @return string pais
+     */
+    public function edicionEditando()
+    {
+        $edicionPublicada = Edicion::where('estatus','publicado')->first();
+        return $edicionPublicada->pais;
+    }
+
+
 }

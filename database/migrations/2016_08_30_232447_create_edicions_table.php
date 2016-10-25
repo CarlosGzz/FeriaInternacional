@@ -18,7 +18,8 @@ class CreateEdicionsTable extends Migration
             $table->date('fechaInicio');
             $table->date('fechaFinal');
             $table->string('logo', 500);
-            $table->enum('estatus', array('activo', 'inactivo'));
+            $table->enum('estatus', array('pasado', 'planeado','publicado'));
+            $table->boolean('modo');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
@@ -26,11 +27,6 @@ class CreateEdicionsTable extends Migration
         Schema::table('ediciones', function(Blueprint $table){
             // Foreign keyes
             $table->foreign('user_id')->references('id')->on('users');
-        });
-
-        Schema::table('users', function(Blueprint $table){
-            // Foreign keyes
-            $table->foreign('edicion_id')->references('id')->on('ediciones');
         });
 
     }
