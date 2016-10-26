@@ -33,7 +33,7 @@ class AplicacionController extends Controller
      */
     public function eventos()
     {
-        $eventos = Edicion::where('estatus','publicado')->eventos();
+        $eventos = Edicion::where('estatus','publicado')->first()->eventos;
         //$eventos = Evento::where('estatus','2')->get(['id','titulo','fechaInicio','fechaFinal','lugar','descripcion']);
         echo json_encode($eventos); 
     }
