@@ -8,10 +8,25 @@ use App\Http\Requests;
 
 use App\Tema;
 
+use App\Edicion;
+
 use App\Http\Requests\TemaRequest;
+
+use DB;
 
 class TemaController extends Controller
 {
+    private $edicionId;
+    /**
+     * Create a new controller instance and validation of user auth.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->edicionId = EdicionesController::edicionEditando();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +55,7 @@ class TemaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -87,4 +102,35 @@ class TemaController extends Controller
     {
         //
     }
+
+    /**
+     * Add theme through new event
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public static function nuevoTemaPorEventoOModulo($tema,$edicionId)
+    {
+        $temaNuevo = new Tema();
+        $temaNuevo->nombre = $tema;
+        //$temaNuevo->save();
+        $edicion = Edicion::find($edicionId);
+        $edicion->temas()->save($temaNuevo);
+        return $temaNuevo;
+    }
+    /**
+     * Get all themes in edition
+     *
+     * 
+     * @return string pais
+     */
+    public static function temasEnEdicion($edicionId)
+    {
+        $temas = DB::table('temas')
+            ->join('edicion_tema', 'temas.id', '=', 'edicion_tema.tema_id')
+            ->where('edicion_tema.edicion_id',$edicionId)
+            ->get();
+        return $temas;
+    }
+
 }

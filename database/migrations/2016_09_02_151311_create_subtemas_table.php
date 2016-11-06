@@ -16,7 +16,6 @@ class CreateSubtemasTable extends Migration
             $table->increments('id');
             $table->integer('tema_id')->unsigned();
             $table->string('nombre',250);
-            $table->string('descripcion',250);
             $table->timestamps();
             // Foreign keyes
             $table->foreign('tema_id')->references('id')->on('temas')->onDelete('cascade')->onUpdate('cascade');

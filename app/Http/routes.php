@@ -46,10 +46,7 @@ Route::group(['prefix'=>'evento'],function(){
 		'uses' => 'EventosController@destroy',
 		'as' => 'evento.eventos.destroy'
 		]);
-	Route::get('eventos/{id}/{edit_delete}',[
-		'uses' => 'EventosController@show',
-		'as' => 'evento.eventos.show'
-		]);
+	
 });
 
 /*
@@ -60,10 +57,6 @@ Route::group(['prefix'=>'contenido'],function(){
 	Route::get('contenido/{id}/destroy',[
 		'uses' => 'ModuloController@destroy',
 		'as' => 'contenido.contenidos.destroy'
-		]);
-	Route::get('modulos/{id}/{edit_delete}',[
-		'uses' => 'ModuloController@show',
-		'as' => 'contenido.contenidos.show'
 		]);
 });
 
@@ -98,6 +91,18 @@ Route::group(['prefix'=>'app'],function(){
 	Route::get('eventos',[
 		'uses' => 'AplicacionController@eventos',
 		'as' => 'eventos'
+		]);
+	Route::get('temas',[
+		'uses' => 'AplicacionController@temas',
+		'as' => 'temas'
+		]);
+	Route::get('subtemas',[
+		'uses' => 'AplicacionController@subtemas',
+		'as' => 'subtemas'
+		]);
+	Route::get('contenido',[
+		'uses' => 'AplicacionController@contenido',
+		'as' => 'contenido'
 		]);
 });
 

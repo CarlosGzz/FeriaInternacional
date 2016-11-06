@@ -13,7 +13,7 @@ class EventosRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,14 +24,14 @@ class EventosRequest extends Request
     public function rules()
     {
         return [
-            'titulo' => 'required|min:3|max:120',
+            'titulo' => 'required|min:3|max:200',
             'fechaInicio' => 'required|date',
             'fechaFinal' => 'required|date',
-            'estatus' => 'required'
-            'lugar' => 'required'
-            'estatus' => 'required'
+            'lugar' => 'required|min:3|max:400',
+            'tema_id' => 'required',
+            'tipo' => 'required',
+            'estatus' => 'required',
             'user_id' => 'required',
-            'edicion_id' => 'required',
         ];
     }
 }

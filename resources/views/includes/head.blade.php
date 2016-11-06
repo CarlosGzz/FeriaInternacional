@@ -36,4 +36,21 @@
             max-height: 100%;
         }
     </style>
+    <style>
+        #sortable { 
+            list-style-type: none; 
+            margin: 0; 
+            padding: 0;  
+        }
+        #sortable button{
+            margin:; 5;
+        }
+        .ui-state-highlight { 
+            height: 1.5em; }
+        .ui-sortable-helper { box-shadow: 0px 0px 10px 1px; }
+    </style>
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+
+
 </head>

@@ -19,6 +19,7 @@ class CreateModulosTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('tema_id')->unsigned();
             $table->string('tipo',120);
+            $table->integer('estatus');
             $table->timestamps();
             // Foreign keyes
             $table->foreign('edicion_id')->references('id')->on('ediciones')->onDelete('cascade')->onUpdate('cascade');

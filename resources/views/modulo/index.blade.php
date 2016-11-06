@@ -10,6 +10,7 @@
 			<tr>
 				<th>Titulo</th>
 				<th>Tipo</th>
+				<th>Estatus</th>
 				<th>Tema</th>
 				<th>Subtemas</th>
 				<th>Contenido</th>
@@ -19,15 +20,22 @@
 		<tbody>
 			@foreach ($modulos as $modulo)
 				<tr data-toggle="collapse" data-target="#accordion{{$modulo->id}}" class="clickable">
-					<td><a href="{{route('contenido.contenidos.show',['id' => $modulo->id, 'edit_delete' => 0])}}">{{ $modulo->titulo }}</a></td>
+					<td><a href="{{route('contenido.contenidos.show',['id' => $modulo->id])}}">{{ $modulo->titulo }}</a></td>
 					<td>{{ $modulo->tipo }}</td>
+					<td>
+						@if($modulo->estatus == 1)
+							Publicado
+						@elseif($modulo->estatus == 2)
+							Planeado
+						@endif
+					</td>
 					<td>{{ $modulo->tema->nombre }}</td>
 					<td>{{ $modulo->subtemas->count() }}</td>
 					<td>{{ $modulo->contenidos->count() }}</td>
 					<td>{{ $modulo->user->name }}</td>
 				</tr>
 				<tr id="accordion{{$modulo->id}}" class="collapse">
-					<td colspan="4">
+					<td colspan="7">
 						@foreach ($modulo->subtemas as $subtema)
 							<label>Subtema:</label> {{ $subtema->nombre }}
 						@endforeach

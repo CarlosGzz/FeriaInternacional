@@ -13,10 +13,7 @@
                 
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        <!-- <i class="glyphicon glyphicon-calendar"></i> -->
                         @yield('pageTitle')
-                        <!-- <small>Publicados</small>
-                        <small>Planeados</small> -->
                     </h1>
                 </div>
                 <div>
@@ -30,6 +27,7 @@
 
         <!-- JavaScripts -->
         @include('includes.javascripts')
+        @yield('scripts')
 
     </body>
 </html>

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Subtema;
+
+use DB;
+
 class SubtemaController extends Controller
 {
     /**
@@ -82,5 +86,16 @@ class SubtemaController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * Get all themes in edition
+     *
+     * 
+     * @return string pais
+     */
+    public static function subtemasEnEdicion()
+    {
+        $subtemas = Subtema::all();
+        return $subtemas;
     }
 }

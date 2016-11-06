@@ -25,7 +25,7 @@
 		<tbody>
 			@foreach ($eventos as $evento)
 				<tr data-toggle="collapse" data-target="#accordion{{$evento->id}}" class="clickable">
-					<td><a href="{{route('evento.eventos.show',['id' => $evento->id, 'edit_delete' => 0])}}">{{ $evento->titulo }}</a></td>
+					<td><a href="{{route('evento.eventos.show',['id' => $evento->id])}}">{{ $evento->titulo }}</a></td>
 					<td>{{ $evento->fechaInicio }}</td>
 					<td>{{ $evento->fechaFinal }}</td>
 					<td>{{ $evento->lugar }}</td>
@@ -34,14 +34,21 @@
 					<td>{{ $evento->tema->nombre }}</td>
 					<td>{{ $evento->subtemas->count() }}</td>
 					<td>{{ $evento->encargado }}</td>
-					<td>{{ $evento->estatus }}</td>
+					<td>
+						@if($evento->estatus == 1)
+							Planeado
+						@elseif($evento->estatus == 2)
+							Publicado
+						@endif
+					</td>
 					<td>{{ $evento->asistencia }}</td>
 					<td>{{ $evento->user->name }}</td>
 				</tr>
 				<tr id="accordion{{$evento->id}}" class="collapse">
-					<td colspan="4">
+					<td colspan="12">
+						<label>Subtemas:</label>
 						@foreach ($evento->subtemas as $subtema)
-							<label>Subtema:</label> {{ $subtema->nombre }}
+							{{ $subtema->nombre }},
 						@endforeach
 					</td>
 				</tr>
@@ -50,4 +57,13 @@
 	</table>
 	{!! $eventos->render() !!}
 
+@stop
+@section('scripts')
+	<!-- Moment -->
+	<script src="{{ URL::asset('js/lib/moment.min.js') }}"></script>
+
+	<!-- Fullcalendar -->
+	<script src="{{ URL::asset('js/fullcalendar.min.js') }}"></script>
+	<script src="{{ URL::asset('js/locale/es.js') }}"></script>
+	<script src="{{ URL::asset('js/calendar.js') }}"></script>
 @stop

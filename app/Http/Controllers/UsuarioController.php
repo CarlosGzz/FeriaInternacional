@@ -40,6 +40,7 @@ class UsuarioController extends Controller
     {
         $usuario = new Usuario($request->all());
         $usuario->save();
+        echo "algo";
         return "ok";
     }
 

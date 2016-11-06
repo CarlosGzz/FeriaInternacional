@@ -44,7 +44,12 @@
 		<!--Fecha Final-->
 		<div class="form-group">
 			<label>Modo</label>
-			<p> {{$edicion->modo}} </p>
+			<p> 
+				@if($edicion->modo == 1)
+					Editando
+				@else
+					Lectura
+				@endif</p>
 		</div>
 
 		<!--ID Admin-->

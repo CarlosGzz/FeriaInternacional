@@ -67,10 +67,11 @@ $factory->define(Evento::class, function (Faker\Generator $faker) {
 $factory->define(Modulo::class, function (Faker\Generator $faker) {
     return [
         'edicion_id' => Edicion::all()->random()->id,
-        'titulo' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'titulo' => $faker->word,
         'user_id' => User::all()->random()->id,
         'tema_id' => Tema::all()->random()->id,
-        'tipo' => $faker->text($maxNbChars = 400),  
+        'tipo' => $faker->word,
+        'estatus' => rand(1,2),  
     ];
 });
 
@@ -78,7 +79,6 @@ $factory->define(Modulo::class, function (Faker\Generator $faker) {
 $factory->define(Tema::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->word,
-        'descripcion' => $faker->text($maxNbChars = 250),
     ];
 });
 
@@ -86,8 +86,7 @@ $factory->define(Tema::class, function (Faker\Generator $faker) {
 $factory->define(Subtema::class, function (Faker\Generator $faker) {
     return [
     	'tema_id' => Tema::all()->random()->id,
-        'nombre' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'descripcion' => $faker->text($maxNbChars = 250),
+        'nombre' => $faker->word,
     ];
 });
 

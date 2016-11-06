@@ -121,9 +121,11 @@ class EdicionesController extends Controller
         if(isset($request->modo)){
             $ediciones = Edicion::all();
             foreach ($ediciones as $ed) {
-                if($ed->modo && $ed->id!=$edicion->id){
-                    $ed->modo = "0";
-                    $ed->save();
+                if ($ed->id != $edicion->id) {
+                    if($ed->modo && $ed->id!=$edicion->id){
+                        $ed->modo = "0";
+                        $ed->save();
+                    }
                 }
             }
             $edicion->modo = $request->modo;
@@ -153,10 +155,13 @@ class EdicionesController extends Controller
      * 
      * @return string pais
      */
-    public function edicionEditando()
+    public static function edicionEditando()
     {
-        $edicionPublicada = Edicion::where('estatus','publicado')->first();
-        return $edicionPublicada->pais;
+        $edicionPublicada = Edicion::where('modo','1')->first();
+        if (empty($edicionPublicada)) {
+            return 0;
+        }
+        return $edicionPublicada->id;
     }
 
 
